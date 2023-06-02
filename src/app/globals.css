@@ -2,26 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Delete later */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+  --brightBlue: hsl(220, 98%, 61%);
+  --checkBgGradient: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+  --veryLightGray: hsl(0, 0%, 98%);
+  --veryLightGrayishBlue: hsl(236, 33%, 92%);
+  --lightGrayishBlue: hsl(233, 11%, 84%);
+  --darkGrayishBlue: hsl(236, 9%, 61%);
+  --veryDarkGrayishBlue: hsl(235, 19%, 35%);
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  --veryDarkBlue: hsl(235, 21%, 11%);
+  --veryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+  --lightGrayishBlue: hsl(234, 39%, 85%);
+  --lightGrayishBlueHover: hsl(236, 33%, 92%);
+  --darkerGrayishBlue: hsl(234, 11%, 52%);
+  --veryDarkGrayishBlue: hsl(233, 14%, 35%);
+  --darkerGrayishBlue2: hsl(237, 14%, 26%);
+
+  /* HEx */
+
+  --brightBlue: #3a7bfd;
+  --checkBgGradient: linear-gradient(to right, #57ddff, #c058f3);
+
+  --veryLightGray: #fafafa;
+  --veryLightGrayishBlue: #e4e5f1;
+  --lightGrayishBlue: #d2d3db;
+  --darkGrayishBlue: #9394a5;
+  --veryDarkGrayishBlue: #484b6a;
+
+  --veryDarkBlue: #161722;
+  --veryDarkDesaturatedBlue: #25273c;
+  --lightGrayishBlue: #cacde8;
+  --lightGrayishBlueHover: #e4e5f1;
+  --darkGrayishBlue: #777a92;
+  --veryDarkGrayishBlue: #4d5066;
+  --darkerGrayishBlue2: #393a4c;
 }
