@@ -37,7 +37,7 @@ const NoteListContainer = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-veryDarkDesaturatedBlue rounded-md text-lightGrayishBlue text-lg font-normal">
       {notesData.map(({ id, data }) => {
         const { content, checked } = data;
 
