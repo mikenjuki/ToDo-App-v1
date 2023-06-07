@@ -86,6 +86,7 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
             width={12}
             height={12}
             alt="delete icon"
+            className="cursor-pointer"
           />
         </div>
       </div>

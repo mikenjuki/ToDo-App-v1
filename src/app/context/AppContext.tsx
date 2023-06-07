@@ -15,7 +15,7 @@ import { db } from "../firebase/config";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect, useState } from "react";
 import AppReducer from "./AppReducer";
 
 // AppState interface
@@ -23,6 +23,9 @@ export interface AppState {
   theme: string;
   updateTheme: (theme: string) => void;
   notes: Note[];
+  filter: string;
+  filterNotes: (filter: string) => void;
+  filteredNotes: Note[];
 }
 
 // Note interface
@@ -42,9 +45,13 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     theme: "light",
     updateTheme: (theme: string) => {},
     notes: [],
+    filter: "all",
+    filterNotes: (filter: string) => {},
+    filteredNotes: [],
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [filteredNotes, setFilteredNotes] = useState<Note[]>([]);
 
   // Fetching notes from the database
   useEffect(() => {
@@ -72,6 +79,30 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     fetchNotes();
   }, []);
 
+  // Filter notes based on the selected filter
+  useEffect(() => {
+    const filterNotes = () => {
+      switch (state.filter) {
+        case "all":
+          setFilteredNotes(state.notes);
+          break;
+        case "active":
+          setFilteredNotes(state.notes.filter((note: Note) => !note.checked));
+          break;
+        case "completed":
+          setFilteredNotes(state.notes.filter((note: Note) => note.checked));
+          break;
+        default:
+          setFilteredNotes(state.notes);
+          break;
+      }
+    };
+
+    filterNotes();
+  }, [state.filter, state.notes]);
+
+  console.log(filteredNotes, "context line 102");
+
   // upateTheme action
   const updateTheme = (theme: string) => {
     dispatch({ type: "UPDATE_THEME", payload: theme });
@@ -82,8 +113,12 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     theme: state.theme,
     updateTheme,
     notes: state.notes,
+    filter: state.filter,
+    filterNotes: (filter: string) => {
+      dispatch({ type: "UPDATE_FILTER", payload: filter });
+    },
+    filteredNotes,
   };
-
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );

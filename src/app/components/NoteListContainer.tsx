@@ -2,6 +2,7 @@
 
 import { DocumentData } from "firebase/firestore";
 import NoteItem from "./NoteItem";
+import SortNotes from "./SortNotes";
 
 import { useContext } from "react";
 import { AppContext, AppState } from "../context/AppContext";
@@ -13,7 +14,9 @@ interface Note {
 
 const NoteListContainer = () => {
   // Getting the notes and theme from the context
-  const { theme, notes } = useContext(AppContext) as AppState;
+  const { theme, notes, filteredNotes } = useContext(AppContext) as AppState;
+
+  console.log(filteredNotes, "line 19 container");
 
   return (
     // Note list container
@@ -22,11 +25,37 @@ const NoteListContainer = () => {
         theme === "light" ? "bg-veryLightGray" : "bg-veryDarkDesaturatedBlue"
       }`}
     >
-      {notes.map(({ id, content, checked }) => {
+      {filteredNotes.map(({ id, content, checked }) => {
         return (
           <NoteItem key={id} id={id} content={content} checked={checked} />
         );
       })}
+      <div
+        className={`stats-section flex items-center justify-between h-[48px] px-4 ${
+          theme === "light"
+            ? "text-darkGrayishBlue"
+            : "text-veryDarkGrayishBlueA"
+        }`}
+      >
+        <p className="font-normal text-[14px] leading-3 tracking-[0.194px]">{`${notes.length} items left`}</p>
+
+        <div className="block xl:hidden w-[327px] absolute top-[17rem] z-10 left-1/2 transform -translate-x-1/2">
+          <SortNotes />
+        </div>
+        <div className="hidden xl:block">
+          <SortNotes />
+        </div>
+
+        <button
+          className={`font-normal text-[14px] leading-3 tracking-[0.194px] ${
+            theme === "light"
+              ? "hover:text-veryDarkGrayishBlueA"
+              : "hover:text-lightGrayishBlueHover"
+          }`}
+        >
+          Clear Completed
+        </button>
+      </div>
     </div>
   );
 };

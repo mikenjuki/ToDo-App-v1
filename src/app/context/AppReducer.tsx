@@ -4,14 +4,16 @@ import { Note } from "./AppContext";
 interface AppState {
   notes: Note[];
   theme: string;
+  filter: string;
 }
 
 // App action interface
 type AppAction =
   | { type: "UPDATE_THEME"; payload: string }
-  | { type: "UPDATE_NOTES"; payload: Note[] };
+  | { type: "UPDATE_NOTES"; payload: Note[] }
+  | { type: "UPDATE_FILTER"; payload: string };
 
-  // Setting up the reducer
+// Setting up the reducer
 const AppReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {
     case "UPDATE_THEME":
@@ -23,6 +25,11 @@ const AppReducer = (state: AppState, action: AppAction): AppState => {
       return {
         ...state,
         notes: action.payload,
+      };
+    case "UPDATE_FILTER":
+      return {
+        ...state,
+        filter: action.payload,
       };
     default:
       return state;
