@@ -36,11 +36,11 @@ const AddNote = () => {
 
   return (
     <section
-      className={`relative top-[-2.5rem] flex flex-row gap-4 items-center w-[327px]  h-12 rounded-[5px] pl-2 mx-auto xl:w-[540px] xl:h-[64px] ${
+      className={`relative top-[-2.5rem] flex flex-row gap-4 items-center w-[327px] h-12 rounded-[5px] pl-4 mx-auto xl:w-[540px] xl:h-[64px] ${
         theme === "light" ? "bg-veryLightGray" : "bg-veryDarkDesaturatedBlue"
       }`}
     >
-      <div className="check-box w-5 h-5 rounded-full border-[1px] border-[#e3e4f1] shrink-0"></div>
+      <div className=" w-5 h-5 rounded-full border-[1px] border-[#e3e4f1] shrink-0"></div>
       <form onSubmit={submitNote} className="w-full">
         <input
           type="text"
@@ -50,7 +50,7 @@ const AddNote = () => {
           className={`outline-none w-full h-full pr-2 ${
             theme === "light"
               ? "bg-veryLightGray text-darkerGrayishBlueB"
-              : "bg-veryDarkDesaturatedBlue text-white"
+              : "bg-veryDarkDesaturatedBlue text-veryLightGray"
           } `}
         />
       </form>

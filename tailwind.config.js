@@ -4,8 +4,6 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     screens: {
@@ -37,12 +35,11 @@ module.exports = {
     fontWeight: { normal: "400", bold: "700" },
     extend: {
       backgroundImage: {
-        "desktop-dark": "url('/assets/images/bg-desktop-dark.jpg')",
-        "desktop-light": "url('/assets/images/bg-desktop-light.jpg')",
-        "mobile-dark": "url('/assets/images/bg-mobile-dark.jpg')",
-        "mobile-light": "url('/assets/images/bg-mobile-light.jpg')",
+        "desktop-dark": "url('/public/assets/images/bg-desktop-dark.jpg')",
+        "desktop-light": "url('/public/assets/images/bg-desktop-light.jpg')",
+        "mobile-dark": "url('/public/assets/images/bg-mobile-dark.jpg')",
+        "mobile-light": "url('/public/assets/images/bg-mobile-light.jpg')",
       },
-      height: ["responsive"],
     },
   },
   plugins: [],

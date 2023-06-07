@@ -2,21 +2,60 @@
 @tailwind utilities;
 @tailwind components;
 
-/* Add these because tailwind classes aren't working */
-/* .note-header {
-  height: 300px;
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+
+:root {
+  --checkBgGradient: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
 }
 
-@media (min-width: 1440px) {
-  .note-header {
-    height: 37vh;
-  }
-} */
+.desktop-dark {
+  background: url("../../public/assets/images/bg-desktop-dark.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
+.desktop-light {
+  background: url("../../public/assets/images/bg-desktop-light.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.mobile-dark {
+  background: url("../../public/assets/images/bg-mobile-dark.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .mobile-light {
-  background: url(../../public//assets/images/bg-mobile-light.jpg);
+  background: url("../../public/assets/images/bg-mobile-light.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-/* body {
-  background-color: ;
-} */
+.check-box-ticked {
+  background-image: url("../../public/assets/images/gradient.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.gradient-hover:hover {
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+  border-image: linear-gradient(
+      to right,
+      hsl(192, 100%, 67%),
+      hsl(280, 87%, 65%)
+    )
+    1;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
