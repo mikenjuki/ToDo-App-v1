@@ -7,7 +7,6 @@
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 
 ## Overview
@@ -21,8 +20,8 @@ This is a simple Todo app built using TypeScript, Next.js 13, and Tailwind CSS. 
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [View code on GitHub](https://github.com/mikenjuki/ToDo-app-v1)
+- Live Site URL: [Live Site here](https://your-live-site-url.com)
 
 ## My process
 
@@ -30,31 +29,26 @@ I started by setting up the project structure and installing the necessary depen
 
 Next, I implemented the context using the createContext hook and set up the initial state and reducer. The context provides access to the todo list, theme, and filter options. I also use typescript to manage my types.
 
-I then created the TodoItem component to display individual todos. The component receives the todo data as props and allows users to update and delete todos.
+I then created the addNote component that allows users to add todos. And a noteitem that receives the mapped data and displays each individual note item.
 
-Next, I implemented the functionality to add new todos using an input form. Users can enter a todo description and press enter to add it to the list.
+Next, I implemented the functionality to delet and check todos and relay that info back to the database so whatever happens here is reflected immediately and there's also a completed at property that logs when the todo was completed.
 
-I also implemented the update and delete functionality for each todo item. Users can mark a todo as complete or incomplete, and they can delete a todo by clicking the delete button. And also you can edit a to do if you made a mistake.
+I also implemented the update and delete functionality for each todo item. Users can mark a todo as complete or incomplete, and they can delete a todo by clicking the delete icon or delete all notes using the clear completed button on the bottom right. And also you can edit a to do if you made a mistake.
 
 To filter the todos based on completion status, I added filter buttons for "All", "Active", and "Completed". Clicking on these buttons updates the filter state, and the todo list is dynamically filtered based on the selected filter.
 
-Also to manage my notes storage i used Firebase firestore to save my to dos.
+To reiterate I use Firebase firestore to save and manage my to dos and some additional fields like when the note was added.
 
 ### Built with
 
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
-- Tailwind CSS
-- Firebase
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Typescript](https://www.typescriptlang.org/docs/)
+- [Tailwind CSS](https://tailwindcss.com/docs/installation)
+- [Firebase](https://firebase.google.com/docs)
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [My blog](https://blog.mikenjuki.com)
+- Twitter - [@mikenjuki](https://www.twitter.com/mikenjuki)
