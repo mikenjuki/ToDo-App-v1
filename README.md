@@ -15,8 +15,8 @@ This is a simple Todo app built using TypeScript, Next.js 13, and Tailwind CSS. 
 
 ### Screenshot
 
-![Desktop Light](../todo-v2/public/assets/images/todo-ss-001.png)
-![Mobile Dark](../todo-v2/public/assets/images/todo-ss-002.png)
+![Desktop Light](./public/assets/images/todo-ss-001.png)
+![Mobile Dark](./public/assets/images/todo-ss-002.png)
 
 ### Links
 
