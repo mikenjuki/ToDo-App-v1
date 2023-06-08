@@ -33,14 +33,6 @@ module.exports = {
       josefin: ["Josefin Sans", "sans-serif"],
     },
     fontWeight: { normal: "400", bold: "700" },
-    extend: {
-      backgroundImage: {
-        "desktop-dark": "url('/public/assets/images/bg-desktop-dark.jpg')",
-        "desktop-light": "url('/public/assets/images/bg-desktop-light.jpg')",
-        "mobile-dark": "url('/public/assets/images/bg-mobile-dark.jpg')",
-        "mobile-light": "url('/public/assets/images/bg-mobile-light.jpg')",
-      },
-    },
   },
   plugins: [],
 };
