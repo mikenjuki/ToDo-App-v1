@@ -14,14 +14,16 @@ interface Note {
 
 const NoteListContainer = () => {
   // Getting the notes and theme from the context
-  const { theme, notes, filteredNotes } = useContext(AppContext) as AppState;
+  const { theme, notes, filteredNotes, deleteCheckedNotes } = useContext(
+    AppContext
+  ) as AppState;
 
   console.log(filteredNotes, "line 19 container");
 
   return (
     // Note list container
     <div
-      className={`note-list drop-shadow-lg w-[327px] flex flex-col mx-auto relative top-[-1.2rem] bg-[#fafafa] rounded-[5px] xl:w-[540px]  ${
+      className={`note-list drop-shadow-lg w-[327px] flex flex-col mx-auto relative top-[-1.2rem] rounded-[5px] xl:w-[540px]  ${
         theme === "light" ? "bg-veryLightGray" : "bg-veryDarkDesaturatedBlue"
       }`}
     >
@@ -39,9 +41,6 @@ const NoteListContainer = () => {
       >
         <p className="font-normal text-[14px] leading-3 tracking-[0.194px]">{`${notes.length} items left`}</p>
 
-        <div className="block xl:hidden w-[327px] absolute top-[17rem] z-10 left-1/2 transform -translate-x-1/2">
-          <SortNotes />
-        </div>
         <div className="hidden xl:block">
           <SortNotes />
         </div>
@@ -52,6 +51,7 @@ const NoteListContainer = () => {
               ? "hover:text-veryDarkGrayishBlueA"
               : "hover:text-lightGrayishBlueHover"
           }`}
+          onClick={deleteCheckedNotes}
         >
           Clear Completed
         </button>

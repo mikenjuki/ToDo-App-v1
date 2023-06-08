@@ -2,18 +2,6 @@
 @tailwind utilities;
 @tailwind components;
 
-/* @import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities"; */
-
-:root {
-  --checkBgGradient: linear-gradient(
-    to right,
-    hsl(192, 100%, 67%),
-    hsl(280, 87%, 65%)
-  );
-}
-
 .desktop-dark {
   background: url("../../public/assets/images/bg-desktop-dark.jpg");
   background-position: center;
@@ -47,15 +35,9 @@
 }
 
 .gradient-hover:hover {
-  border: 1px solid transparent;
-  transition: border-color 0.3s ease-in-out;
-  border-image: linear-gradient(
-      to right,
-      hsl(192, 100%, 67%),
-      hsl(280, 87%, 65%)
-    )
-    1;
+  background-image: url("../../public/assets/images/gradient-hover.svg");
+  background-size: cover;
+  width: 1.25rem;
+  height: 1.25rem;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
 }

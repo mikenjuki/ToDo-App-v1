@@ -22,7 +22,7 @@ const SortNotes = () => {
           theme === "light"
             ? "hover:text-veryDarkGrayishBlueA"
             : "hover:text-lightGrayishBlueHover"
-        } ${activeFilter === "all" && "text-brightBlue"}`}
+        } ${activeFilter === "all" ? "text-brightBlue" : ""}`}
         onClick={() => handleFilter("all")}
       >
         All
@@ -32,7 +32,7 @@ const SortNotes = () => {
           theme === "light"
             ? "hover:text-veryDarkGrayishBlueA"
             : "hover:text-lightGrayishBlueHover"
-        } ${activeFilter === "active" && "text-brightBlue"}`}
+        } ${activeFilter === "active" ? "text-brightBlue" : ""}`}
         onClick={() => handleFilter("active")}
       >
         Active
@@ -42,7 +42,7 @@ const SortNotes = () => {
           theme === "light"
             ? "hover:text-veryDarkGrayishBlueA"
             : "hover:text-lightGrayishBlueHover"
-        } ${activeFilter === "completed" && "text-brightBlue"}`}
+        } ${activeFilter === "completed" ? "text-brightBlue" : ""}`}
         onClick={() => handleFilter("completed")}
       >
         Completed

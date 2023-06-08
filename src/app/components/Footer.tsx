@@ -3,13 +3,19 @@
 import { AppContext, AppState } from "../context/AppContext";
 import { useContext } from "react";
 
+import SortNotes from "./SortNotes";
+
 const Footer = () => {
   const { theme } = useContext(AppContext) as AppState;
   return (
     <>
       <footer
-        className={`flex flex-col items-center relative top-10 mt-6 gap-7 xl:gap-4  xl:mt-0 xl:top-[1rem]`}
+        className={`flex flex-col items-center relative gap-7 xl:gap-4 xl:mt-0 xl:top-[1rem]`}
       >
+        <div className="relative block xl:hidden z-10 drop-shadow-lg w-[327px] rounded-[5px]">
+          <SortNotes />
+        </div>
+
         <p
           className={`font-normal text-sm leading-[14px] tracking-[0.194px]
          ${

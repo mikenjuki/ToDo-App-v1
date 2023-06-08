@@ -40,7 +40,7 @@ const AddNote = () => {
         theme === "light" ? "bg-veryLightGray" : "bg-veryDarkDesaturatedBlue"
       }`}
     >
-      <div className=" w-5 h-5 rounded-full border-[1px] border-[#e3e4f1] shrink-0"></div>
+      <div className=" w-5 h-5 rounded-full border-[1px] border-lightGrayishBlueHover shrink-0"></div>
       <form onSubmit={submitNote} className="w-full">
         <input
           type="text"

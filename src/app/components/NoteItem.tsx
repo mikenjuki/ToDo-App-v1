@@ -1,8 +1,10 @@
+"use client";
+
 import { updateDoc, doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext, AppState } from "../context/AppContext";
 
 interface NoteItemProps {
@@ -12,7 +14,9 @@ interface NoteItemProps {
 }
 
 const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
-  const { theme } = useContext(AppContext) as AppState;
+  const { theme, deleteNote } = useContext(AppContext) as AppState;
+  const [editNote, setEditNote] = useState(false);
+  const [editedContent, setEditedContent] = useState(content);
 
   // Handle checkbox click
   const handleCheckBoxClick = (id: string) => async () => {
@@ -43,6 +47,47 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
     }
   };
 
+  // Handle edit click
+  const handleEditClick = () => {
+    setEditNote(true);
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setEditedContent(e.target.value);
+  };
+
+  const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const noteRef = doc(db, "notes", id);
+      const noteSnap = await getDoc(noteRef);
+
+      if (!noteSnap.exists()) {
+        console.log("No such document!");
+      } else {
+        console.log("Document data:", noteSnap.data());
+      }
+
+      // Update the document
+      await updateDoc(noteRef, {
+        content: editedContent,
+      });
+
+      setEditNote(false);
+    } catch (error) {
+      // Handle errors here
+      console.error("Error updating note:", error);
+    }
+  };
+
+  // Handle delete click
+  const handleDeleteClick = (id: string) => {
+    deleteNote(id);
+  };
+
   return (
     // Note item container
     <div
@@ -51,14 +96,14 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
           ? "border-lightGrayishBlueHover"
           : "border-darkerGrayishBlueB"
       }`}
-      onClick={handleCheckBoxClick(id)}
     >
       <div
-        className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 gradient-hover ${
+        className={`relative w-5 h-5 rounded-full flex items-center justify-center shrink-0  ${
           checked
             ? "justify-center check-box-ticked"
-            : "border-[1px] border-[#e3e4f1]"
+            : "border-[1px] border-lightGrayishBlueHover gradient-hover"
         }`}
+        onClick={handleCheckBoxClick(id)}
       >
         {checked && (
           <Image
@@ -71,15 +116,33 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
       </div>
 
       <div className="p-flex pl-2 flex flex-row items-center justify-between w-full">
-        <p
-          className={`font-normal text-xs leading-3 tracking-[0.167px] ${
-            checked ? "line-through" : ""
-          } ${checked && theme === "light" ? "text-lightGrayishBlue" : ""} ${
-            checked && theme === "dark" ? "text-veryDarkGrayishBlueB" : ""
-          }  ${!checked && theme === "dark" ? "text-lightGrayishBlue" : ""}`}
-        >
-          {content}
-        </p>
+        {editNote ? (
+          // Render input field or textarea for editing
+          <form onSubmit={handleEditSubmit}>
+            <input
+              type="text"
+              value={editedContent}
+              onChange={handleInputChange}
+              className={`outline-none w-[240px] xl:w-[327px] h-full pr-2 ${
+                theme === "light"
+                  ? "bg-veryLightGray text-darkerGrayishBlueB"
+                  : "bg-veryDarkDesaturatedBlue text-veryLightGray"
+              }`}
+            />
+          </form>
+        ) : (
+          // Render content as text with edit functionality
+          <p
+            className={`font-normal text-xs leading-3 tracking-[0.167px] ${
+              checked ? "line-through" : ""
+            } ${checked && theme === "light" ? "text-lightGrayishBlue" : ""} ${
+              checked && theme === "dark" ? "text-veryDarkGrayishBlueB" : ""
+            }  ${!checked && theme === "dark" ? "text-lightGrayishBlue" : ""}`}
+            onClick={handleEditClick}
+          >
+            {content}
+          </p>
+        )}
         <div>
           <Image
             src="./assets/images/icon-cross.svg"
@@ -87,6 +150,7 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
             height={12}
             alt="delete icon"
             className="cursor-pointer"
+            onClick={() => handleDeleteClick(id)}
           />
         </div>
       </div>
