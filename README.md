@@ -21,7 +21,7 @@ This is a simple Todo app built using TypeScript, Next.js 13, and Tailwind CSS. 
 ### Links
 
 - Solution URL: [View code on GitHub](https://github.com/mikenjuki/ToDo-app-v1)
-- Live Site URL: [Live Site here](https://your-live-site-url.com)
+- Live Site URL: [Live Site here](https://to-do-app-v1-1335qi3hp-mikenjuki.vercel.app/)
 
 ## My process
 
