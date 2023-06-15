@@ -5,6 +5,9 @@ import HeaderNav from "./components/HeaderNav";
 import { AppProvider } from "./context/AppContext";
 import BodyColorUpdater from "./components/BodyColorUpdater";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Josefin = Josefin_Sans({ weight: ["400", "700"], subsets: ["latin"] });
 
 export const metadata = {
@@ -25,13 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AppProvider>
-        <body className={`${Josefin.className} `}>
+        <body className={`${Josefin.className} h-screen `}>
           <BodyColorUpdater />
-          <HeaderNav />
-
           <main>{children}</main>
         </body>
       </AppProvider>
+
+      <ToastContainer />
     </html>
   );
 }

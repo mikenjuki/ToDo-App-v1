@@ -115,7 +115,7 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
         )}
       </div>
 
-      <div className="p-flex pl-2 flex flex-row items-center justify-between w-full">
+      <div className="pl-2 flex flex-row items-center justify-between w-full">
         {editNote ? (
           // Render input field or textarea for editing
           <form onSubmit={handleEditSubmit}>
