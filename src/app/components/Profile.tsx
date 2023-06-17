@@ -77,7 +77,7 @@ const Profile = () => {
     <>
       <HeaderNav />
 
-      <section className="grid grid-rows-2 items-center mx-auto relative top-[1rem] w-[327px] xl:w-[540px]">
+      <section className="grid grid-rows-2 items-center mx-auto relative top-[-3rem] w-[327px] xl:w-[540px]">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl">My Profile</h2>
 
@@ -90,7 +90,7 @@ const Profile = () => {
           </button>
         </div>
 
-        <div className="profile-details flex flex-col">
+        <div className="profile-details flex flex-col relative top-[-4rem]">
           <button
             className="text-veryLightGrayishBlue bg-veryDarkGrayishBlueA text-lg font-normal hover:scale-95 rounded-lg px-5 py-2.5 text-center w-[11rem]"
             onClick={() => {
