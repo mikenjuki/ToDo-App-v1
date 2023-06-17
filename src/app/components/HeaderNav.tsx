@@ -19,6 +19,7 @@ const HeaderNav = () => {
   const router = useRouter();
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const isProfilePage = pathname === "/profile";
 
   const handleThemeChange = () => {
     if (theme === "light") {
@@ -34,7 +35,9 @@ const HeaderNav = () => {
 
   return (
     <header
-      className={`h-[200px] relative w-full px-6 bg-cover bg-center bg-no-repeat grid grid-rows-2 gap-[40px] justify-center items-center xl:h-[300px] mobile-${themeClass} xl:desktop-${themeClass}`}
+      className={` h-[200px] relative w-full px-6 bg-cover bg-center bg-no-repeat grid grid-rows-2 gap-[40px] justify-center items-center  mobile-${themeClass} xl:desktop-${themeClass} ${
+        isProfilePage ? "xl:h-[220px]" : "xl:h-[300px]"
+      }`}
     >
       <div className="relative flex items-center justify-between flex-row w-[325px] xl:w-[541px] top-[1rem]">
         <h1
