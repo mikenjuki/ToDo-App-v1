@@ -1,9 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { auth } from "../firebase/config";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const ForgotPass = () => {
+  const [email, setEmail] = useState("");
+  const router = useRouter();
+
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      router.push("/signin");
+      console.log("email sent");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="bg-veryDarkDesaturatedBlue h-screen">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -16,7 +39,8 @@ const ForgotPass = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-veryLightGrayishBlue md:text-2xl">
               Enter Email to get a password reset link
             </h1>
-            <form className="space-y-4 md:space-y-6">
+
+            <form className="space-y-4 md:space-y-6" onSubmit={onSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -26,11 +50,12 @@ const ForgotPass = () => {
                 </label>
                 <input
                   type="email"
-                  name="email"
+                  value={email}
                   id="email"
                   className="bg-veryDarkGrayishBlueA text-veryLightGray text-lg rounded-lg block w-full p-2.5"
-                  placeholder="name@company.com"
+                  placeholder="name@email.com"
                   required
+                  onChange={onEmailChange}
                 />
               </div>
 

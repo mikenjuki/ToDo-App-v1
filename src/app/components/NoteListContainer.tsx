@@ -7,9 +7,13 @@ import SortNotes from "./SortNotes";
 import { useContext } from "react";
 import { AppContext, AppState } from "../context/AppContext";
 
+import { useAuthContext } from "../context/AuthContext";
+
 interface Note {
   id: string;
-  data: DocumentData;
+  userRef?: string;
+  content: string;
+  checked: boolean;
 }
 
 const NoteListContainer = () => {
@@ -18,7 +22,16 @@ const NoteListContainer = () => {
     AppContext
   ) as AppState;
 
+  const { user } = useAuthContext();
+
   console.log(filteredNotes, "line 19 container");
+
+  console.log(user, "container line 64");
+
+  // Filter notes based on userRef field
+  const userNotes = filteredNotes.filter(
+    (note: Note) => note.userRef === user?.id
+  );
 
   return (
     // Note list container
@@ -27,7 +40,7 @@ const NoteListContainer = () => {
         theme === "light" ? "bg-veryLightGray" : "bg-veryDarkDesaturatedBlue"
       }`}
     >
-      {filteredNotes.map(({ id, content, checked }) => {
+      {userNotes.map(({ id, content, checked }) => {
         return (
           <NoteItem key={id} id={id} content={content} checked={checked} />
         );
@@ -39,7 +52,7 @@ const NoteListContainer = () => {
             : "text-veryDarkGrayishBlueA"
         }`}
       >
-        <p className="font-normal text-[14px] leading-3 tracking-[0.194px]">{`${notes.length} items left`}</p>
+        <p className="font-normal text-[14px] leading-3 tracking-[0.194px]">{`${userNotes.length} items left`}</p>
 
         <div className="hidden xl:block">
           <SortNotes />

@@ -101,7 +101,7 @@ const SignUp = () => {
                   value={email}
                   id="email"
                   className="bg-veryDarkGrayishBlueA text-veryLightGray text-lg rounded-lg block w-full p-2.5"
-                  placeholder="name@company.com"
+                  placeholder="name@email.com"
                   required
                   onChange={handlelInputChange}
                 />

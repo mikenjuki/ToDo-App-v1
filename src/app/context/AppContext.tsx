@@ -57,6 +57,8 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
   const [filteredNotes, setFilteredNotes] = useState<Note[]>([]);
 
+
+
   // Fetching notes from the database
   useEffect(() => {
     const fetchNotes = async () => {
