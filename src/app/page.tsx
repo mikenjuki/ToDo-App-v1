@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     if (user == null) {
-      console.log("user is null");
+      // console.log("user is null");
       router.push("/signin");
     }
   }, [user, router]);

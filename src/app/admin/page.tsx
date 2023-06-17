@@ -10,12 +10,17 @@ const Page = () => {
 
   useEffect(() => {
     if (user == null) {
-      console.log("user is null");
+      // console.log("user is null");
       router.push("/signin");
     }
   }, [user, router]);
 
-  return <h1>Only logged in users can view this page</h1>;
+  return (
+    <>
+      <h1>Only logged in users can view this page</h1>
+      <p>For testing purposes only</p>
+    </>
+  );
 };
 
 export default Page;

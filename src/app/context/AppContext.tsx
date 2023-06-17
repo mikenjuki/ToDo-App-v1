@@ -57,8 +57,6 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
   const [filteredNotes, setFilteredNotes] = useState<Note[]>([]);
 
-
-
   // Fetching notes from the database
   useEffect(() => {
     const fetchNotes = async () => {
@@ -107,7 +105,7 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     filterNotes();
   }, [state.filter, state.notes]);
 
-  console.log(filteredNotes, "context line 102");
+  // console.log(filteredNotes, "context line 108");
 
   // Delete checked notes from the database
   const deleteCheckedNotes = async () => {

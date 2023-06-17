@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useEffect, useState, ReactNode } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
@@ -29,7 +31,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(user, "auth context user");
+  // console.log(user, "auth context user");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -45,7 +47,6 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       setLoading(false);
     });
 
-    console.log("AuthContextProvider");
     return () => unsubscribe();
   }, []);
 

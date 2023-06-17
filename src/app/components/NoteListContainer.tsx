@@ -1,6 +1,5 @@
 "use client";
 
-import { DocumentData } from "firebase/firestore";
 import NoteItem from "./NoteItem";
 import SortNotes from "./SortNotes";
 
@@ -18,15 +17,11 @@ interface Note {
 
 const NoteListContainer = () => {
   // Getting the notes and theme from the context
-  const { theme, notes, filteredNotes, deleteCheckedNotes } = useContext(
+  const { theme, filteredNotes, deleteCheckedNotes } = useContext(
     AppContext
   ) as AppState;
 
   const { user } = useAuthContext();
-
-  console.log(filteredNotes, "line 19 container");
-
-  console.log(user, "container line 64");
 
   // Filter notes based on userRef field
   const userNotes = filteredNotes.filter(
