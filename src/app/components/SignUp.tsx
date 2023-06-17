@@ -8,13 +8,14 @@ import OAuth from "./OAuth";
 import { auth } from "../firebase/config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { db } from "../firebase/config";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp, FieldValue } from "firebase/firestore";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
+    createdAt: null as FieldValue | null,
   });
 
   const { fullName, email, password } = formData;
@@ -27,7 +28,7 @@ const SignUp = () => {
   };
   const router = useRouter();
 
-  const onFormSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -39,17 +40,19 @@ const SignUp = () => {
 
       const { user } = userCredential;
 
-      updateProfile(auth.currentUser, { displayName: fullName });
+      if (auth.currentUser) {
+        updateProfile(auth.currentUser, { displayName: fullName });
 
-      const formDataCopy = { ...formData };
+        const formDataCopy: Partial<typeof formData> = { ...formData };
 
-      delete formDataCopy.password;
+        delete formDataCopy.password;
 
-      formDataCopy.createdAt = serverTimestamp();
+        formDataCopy.createdAt = serverTimestamp() as FieldValue;
 
-      await setDoc(doc(db, "users", user.uid), formDataCopy);
+        await setDoc(doc(db, "users", user.uid), formDataCopy);
 
-      router.push("/");
+        router.push("/");
+      }
     } catch (error) {
       console.log(error);
     }

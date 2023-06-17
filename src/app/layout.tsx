@@ -1,12 +1,12 @@
+"use client";
+
 import "./globals.css";
 import { Josefin_Sans } from "next/font/google";
-import HeaderNav from "./components/HeaderNav";
 
 import { AppProvider } from "./context/AppContext";
+// import PrivateRoute from "./components/PrivateRoute";
+import { AuthContextProvider } from "./context/AuthContext";
 import BodyColorUpdater from "./components/BodyColorUpdater";
-
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Josefin = Josefin_Sans({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -28,13 +28,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AppProvider>
-        <body className={`${Josefin.className} h-screen `}>
+        <body className={`${Josefin.className} h-screen`}>
           <BodyColorUpdater />
-          <main>{children}</main>
+          <main>
+            <AuthContextProvider>{children}</AuthContextProvider>
+          </main>
         </body>
       </AppProvider>
-
-      <ToastContainer />
     </html>
   );
 }
+
+// allow read, write: if request.auth != null && request.auth.uid == resource.data.userRef;

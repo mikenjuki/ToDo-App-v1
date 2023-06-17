@@ -3,8 +3,7 @@
 import { auth } from "../firebase/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-import { toast } from "react-toastify";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import OAuth from "./OAuth";
@@ -26,6 +25,26 @@ const SignIn = () => {
     }));
   };
 
+  const router = useRouter();
+
+  const handleSignInForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (userCredential.user) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="bg-veryDarkDesaturatedBlue h-screen">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -38,7 +57,10 @@ const SignIn = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-veryLightGrayishBlue md:text-2xl">
               Welcome Back, Sign In
             </h1>
-            <form className="space-y-4 md:space-y-6">
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={handleSignInForm}
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -82,7 +104,6 @@ const SignIn = () => {
                       aria-describedby="remember"
                       type="checkbox"
                       className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
-                      required
                     />
                   </div>
                   <div className="ml-3 text-sm">
