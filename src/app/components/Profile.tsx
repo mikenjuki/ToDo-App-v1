@@ -77,7 +77,7 @@ const Profile = () => {
     <>
       <HeaderNav />
 
-      <section className="grid grid-rows-2 items-center mx-auto relative top-[-3rem] w-[327px] xl:w-[540px]">
+      <section className="grid grid-rows-2 items-center mx-auto relative top-[-3rem] xl:top-[-4rem] w-[327px] xl:w-[540px]">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl">My Profile</h2>
 
