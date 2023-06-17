@@ -2,7 +2,6 @@ import "./globals.css";
 import { Josefin_Sans } from "next/font/google";
 
 import { AppProvider } from "./context/AppContext";
-// import PrivateRoute from "./components/PrivateRoute";
 import { AuthContextProvider } from "./context/AuthContext";
 import BodyColorUpdater from "./components/BodyColorUpdater";
 
@@ -36,5 +35,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-// allow read, write: if request.auth != null && request.auth.uid == resource.data.userRef;
