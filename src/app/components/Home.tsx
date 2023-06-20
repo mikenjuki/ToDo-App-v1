@@ -17,9 +17,9 @@ const Home = () => {
 
   useEffect(() => {
     if (user == null) {
-      toast.error("Sign in please!", {
-        hideProgressBar: true,
-      });
+      // toast.success("Sign in please!", {
+      //   hideProgressBar: true,
+      // });
       router.push("/signin");
     }
   }, [user, router]);

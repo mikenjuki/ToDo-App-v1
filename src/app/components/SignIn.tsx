@@ -6,6 +6,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { toast } from "react-toastify";
+
 import OAuth from "./OAuth";
 import Link from "next/link";
 
@@ -39,9 +41,18 @@ const SignIn = () => {
 
       if (userCredential.user) {
         router.push("/");
+        toast.success("Welcome", {
+          hideProgressBar: true,
+        });
       }
     } catch (error) {
-      console.log(error);
+      toast.warn(`Warning: ${error}`, {
+        hideProgressBar: true,
+      });
+
+      toast.success("Note added successfully", {
+        hideProgressBar: true,
+      });
     }
   };
 
