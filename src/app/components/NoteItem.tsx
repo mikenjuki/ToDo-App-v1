@@ -7,6 +7,8 @@ import Image from "next/image";
 import { useContext, useState } from "react";
 import { AppContext, AppState } from "../context/AppContext";
 
+import { toast } from "react-toastify";
+
 interface NoteItemProps {
   id: string;
   checked: boolean;
@@ -24,11 +26,11 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
       const noteRef = doc(db, "notes", id);
       const noteSnap = await getDoc(noteRef);
 
-      if (!noteSnap.exists()) {
-        console.log("No such document!");
-      } else {
-        console.log("Document data:", noteSnap.data());
-      }
+      // if (!noteSnap.exists()) {
+      //   console.log("No such document!");
+      // } else {
+      //   console.log("Document data 2222:", noteSnap.data());
+      // }
 
       // Get the checked status from the document
       const { checked } = noteSnap.data() as { checked: boolean };
@@ -65,27 +67,34 @@ const NoteItem: React.FC<NoteItemProps> = ({ id, checked, content }) => {
       const noteRef = doc(db, "notes", id);
       const noteSnap = await getDoc(noteRef);
 
-      if (!noteSnap.exists()) {
-        console.log("No such document!");
-      } else {
-        console.log("Document data:", noteSnap.data());
-      }
+      // if (!noteSnap.exists()) {
+      //   console.log("No such document!");
+      // } else {
+      //   console.log("Document data:", noteSnap.data());
+      // }
 
       // Update the document
       await updateDoc(noteRef, {
         content: editedContent,
       });
-
+      toast.success("Edited note successfully", {
+        hideProgressBar: true,
+      });
       setEditNote(false);
     } catch (error) {
       // Handle errors here
-      console.error("Error updating note:", error);
+      toast.error("Oops, note wasn't edited. That's on us!", {
+        hideProgressBar: true,
+      });
     }
   };
 
   // Handle delete click
   const handleDeleteClick = (id: string) => {
     deleteNote(id);
+    toast.success("Deleted note!", {
+      hideProgressBar: true,
+    });
   };
 
   return (

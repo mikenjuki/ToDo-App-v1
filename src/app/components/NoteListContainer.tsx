@@ -3,7 +3,6 @@
 import NoteItem from "./NoteItem";
 import SortNotes from "./SortNotes";
 
-// import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 import { useContext } from "react";

@@ -14,18 +14,18 @@ const AddNote = () => {
   const [note, setNote] = useState("");
   const { theme } = useContext(AppContext) as AppState;
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("success");
-      } else {
-        console.log("error");
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       console.log("success");
+  //     } else {
+  //       console.log("error");
+  //     }
+  //   });
 
-    // Clean up the listener
-    return () => unsubscribe();
-  }, []);
+  //   // Clean up the listener
+  //   return () => unsubscribe();
+  // }, []);
 
   const submitNote = async (e: React.FormEvent) => {
     e.preventDefault();
