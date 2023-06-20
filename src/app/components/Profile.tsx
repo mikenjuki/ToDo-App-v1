@@ -7,7 +7,6 @@ import { useAuthContext } from "../context/AuthContext";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-// import { toast } from "react-toastify";
 
 import { auth, db } from "../firebase/config";
 import { updateProfile } from "firebase/auth";
@@ -32,7 +31,9 @@ const Profile = () => {
 
   useEffect(() => {
     if (user == null) {
-      console.log("user is null");
+      toast.error("Sign in please!", {
+        hideProgressBar: true,
+      });
       router.push("/signin");
     }
   }, [user, router]);

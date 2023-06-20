@@ -3,6 +3,9 @@
 import NoteItem from "./NoteItem";
 import SortNotes from "./SortNotes";
 
+// import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 import { useContext } from "react";
 import { AppContext, AppState } from "../context/AppContext";
 
@@ -27,6 +30,16 @@ const NoteListContainer = () => {
   const userNotes = filteredNotes.filter(
     (note: Note) => note.userRef === user?.id
   );
+
+  const handleClearCompleted = () => {
+    // Call the deleteCheckedNotes function
+    deleteCheckedNotes();
+
+    // Show the toast notification
+    toast.success("Deleted checked notes!", {
+      hideProgressBar: true,
+    });
+  };
 
   return (
     // Note list container
@@ -59,7 +72,7 @@ const NoteListContainer = () => {
               ? "hover:text-veryDarkGrayishBlueA"
               : "hover:text-lightGrayishBlueHover"
           }`}
-          onClick={deleteCheckedNotes}
+          onClick={handleClearCompleted}
         >
           Clear Completed
         </button>

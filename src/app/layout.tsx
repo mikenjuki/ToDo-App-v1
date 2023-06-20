@@ -5,6 +5,9 @@ import { AppProvider } from "./context/AppContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import BodyColorUpdater from "./components/BodyColorUpdater";
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 const Josefin = Josefin_Sans({ weight: ["400", "700"], subsets: ["latin"] });
 
 export const metadata = {
@@ -31,6 +34,8 @@ export default function RootLayout({
             <AuthContextProvider>{children}</AuthContextProvider>
           </main>
         </body>
+
+        {/* <ToastContainer /> */}
       </AppProvider>
     </html>
   );

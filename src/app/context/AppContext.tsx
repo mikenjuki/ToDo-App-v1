@@ -15,7 +15,7 @@ import { db } from "../firebase/config";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
-import { createContext, useReducer, useEffect, useState, use } from "react";
+import { createContext, useReducer, useEffect, useState } from "react";
 import AppReducer from "./AppReducer";
 
 // AppState interface
