@@ -38,6 +38,7 @@ const HeaderNav = () => {
     setLoading(true);
     router.push("/profile");
   };
+
   const handleHomeLinkClick = () => {
     setLoading(true);
     router.push("/");

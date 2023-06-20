@@ -13,9 +13,12 @@ import { updateProfile } from "firebase/auth";
 import { updateDoc, doc } from "firebase/firestore";
 
 import HeaderNav from "./HeaderNav";
+import Spinner from "./Spinner";
 
 const Profile = () => {
   const { user } = useAuthContext();
+
+  const [loading, setLoading] = useState(false);
 
   const [changeDetails, setChangeDetails] = useState(false);
   const [formData, setFormData] = useState({
@@ -46,6 +49,7 @@ const Profile = () => {
   };
 
   const onLogout = () => {
+    setLoading(true);
     auth.signOut();
 
     router.push("/signin");
@@ -76,7 +80,6 @@ const Profile = () => {
     toast.success("Successfully updated profile", {
       hideProgressBar: true,
     });
-    console.log("successfully updated profile");
   };
 
   if (user == null) {
@@ -136,11 +139,12 @@ const Profile = () => {
                 }`}
                 disabled={true}
                 value={email}
-                onChange={onProfileDetailsChange}
               />
             </form>
           </div>
         </div>
+
+        {loading && <Spinner />}
       </section>
 
       <ToastContainer />
