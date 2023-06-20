@@ -36,7 +36,6 @@ const OAuth = () => {
       router.push("/");
     } catch (err) {
       console.log(err);
-      router.push("/signup");
     }
   };
 

@@ -1,11 +1,13 @@
 "use client";
 
-import React, { use } from "react";
-
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AppContext, AppState } from "../context/AppContext";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../context/AuthContext";
+
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 import { auth, db } from "../firebase/config";
 import { updateProfile } from "firebase/auth";
@@ -46,6 +48,9 @@ const Profile = () => {
     auth.signOut();
 
     router.push("/signin");
+    toast.success("Successfully logged out", {
+      hideProgressBar: true,
+    });
     console.log("successfully logged out");
   };
 
@@ -63,9 +68,13 @@ const Profile = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      toast.success("Oops something went wrong! That's on us.", {
+        hideProgressBar: true,
+      });
     }
-
+    toast.success("Successfully updated profile", {
+      hideProgressBar: true,
+    });
     console.log("successfully updated profile");
   };
 
@@ -132,6 +141,8 @@ const Profile = () => {
           </div>
         </div>
       </section>
+
+      <ToastContainer />
     </>
   );
 };
