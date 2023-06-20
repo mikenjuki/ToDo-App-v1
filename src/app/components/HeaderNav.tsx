@@ -53,13 +53,13 @@ const HeaderNav = () => {
       <div className="relative flex items-center justify-between flex-row w-[325px] xl:w-[541px] top-[1rem]">
         <h1
           className="text-2xl tracking-[10px] text-veryLightGray font-normal xl:font-bold xl:text-[40px] xl:leading-[40px] cursor-pointer"
-          onClick={handleHomeLinkClick}
+          onClick={isHomePage ? undefined : handleHomeLinkClick}
         >
           TODO
         </h1>
 
         <div className="flex gap-3 items-center">
-          <button onClick={handleProfileLinkClick}>
+          <button onClick={handleProfileLinkClick} disabled={isProfilePage}>
             <MdPerson className="text-veryLightGrayishBlue text-3xl" />
           </button>
 

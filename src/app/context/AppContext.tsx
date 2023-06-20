@@ -14,6 +14,8 @@ import {
 import { db } from "../firebase/config";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { auth } from "../firebase/config";
+import { onAuthStateChanged } from "firebase/auth";
 
 import { createContext, useReducer, useEffect, useState } from "react";
 import AppReducer from "./AppReducer";
@@ -81,6 +83,17 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
 
     fetchNotes();
+
+    // Add an auth state change listener to fetchNotes on sign-in
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetchNotes();
+      }
+    });
+
+    return () => {
+      unsubscribeAuth(); // Unsubscribe from the auth state change listener when the component is unmounted
+    };
   }, []);
 
   // Filter notes based on the selected filter
